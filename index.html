@@ -7,6 +7,10 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_cart" defer crossorigin />
     
+    <link rel="preconnect" href="https://fonts.googleapis.com" defer crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" defer crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" defer crossorigin>
+    
     <link rel="stylesheet" href="Styles.css">
     <title>shopping-cart</title>
   </head>
@@ -25,8 +29,10 @@
       </nav>
 
       <div class="hero">
-        <h1>Discover ether items</h1>
-        <p>Browse our selection of handpicked items specially for you</p>
+        <div class="hero-text-container">
+          <h1>Discover ether items</h1>
+          <p>Browse our selection of handpicked items specially for you</p>
+        </div>
         <img id="hero-image" src="https://images.pexels.com/photos/9565973/pexels-photo-9565973.jpeg" alt="Living room" loading="eager">
         <!-- Hero images shoudlnt be lazy -->
       </div>
@@ -44,7 +50,7 @@
           </div>
 
           <div class="product-card">
-            <img id="produc-image" src="" alt="Oslo chair" loading="lazy">
+            <img id="product-image" src="https://images.pexels.com/photos/6694337/pexels-photo-6694337.jpeg" alt="Oslo chair" loading="lazy">
             <p class="product-name">The Oslo chair</p>
             <p class="product-price">₩300 000</p>
           </div>
