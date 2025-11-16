@@ -4,26 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="description" content="Online shopping webiste">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=shopping_cart" defer crossorigin />
-  
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add" defer crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=remove" defer crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=delete_forever" defer crossorigin />
-    
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icons=add,remove,delete,shopping_cart" crossorigin="anonymous" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" defer crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" defer crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" defer crossorigin>
     
     <link rel="stylesheet" href="Styles.css">
-    <title>shopping-cart</title>
+    <title>Ether online shopping</title>
   </head>
-  <body>
+  <!-- <body class="body-home-page"> -->
+  <body class="body-cart-page">
     <!-- <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script> -->
     
     <!-- Hero images shoudlnt be lazy -->
     <!-- Redirect to page -->
 
+    <!-- <header class="header-home-page"> -->
     <header>
       <nav aria-label="Main navigation">
         <a href="/">Home</a>
@@ -42,7 +41,7 @@
       </div>-->
     </header>
 
-    <!-- <main role="main">
+    <!-- <main role="main" class="main-home-page">
       <section class="best-sellers" aria-labelledby="best-sellers-heading">
         <h2 id="best-sellers-heading">Shop our best sellers</h2>
 
@@ -101,16 +100,18 @@
 
   <!-- CART //// /////// ///// -->
     <!-- display nav -->
-    <main role="main">
-      <section class="cart-section" aria-labelledby="cart-heading">
-        <h1 id="cart-heading">Your shopping cart</h1>
+    <main role="main" class="main-cart-page">
+      <h1 id="cart-heading">Your shopping cart</h1>
 
-        <section class="cart-content-section" aria-labelledby="cart-content-heading">
+      <section class="cart-content-section" aria-labelledby="cart-content-heading">
+        <span class="span-content-header">
           <h2 id="order-content-heading">3 items</h2>
           <button class="clear-button" type="button">Clear all</button>
-  
-          <div class="items-grid">
-            <img src="" alt="" loading="lazy">
+        </span>
+
+        <div class="items-grid">
+          <div class="cart-item">
+            <img id="cart-item-image" src="https://images.pexels.com/photos/6694337/pexels-photo-6694337.jpeg" alt="" loading="lazy">
 
             <div class="item-content">
               <p class="item-name">Clasic White T-shirt</p>
@@ -118,29 +119,82 @@
             </div>
 
             <div class="item-related-buttons">
-              <button class="increase-button" type="button">
+              <button class="item-button" type="button">
                 <span class="material-symbols-outlined" role="img" aria-label="Increase icon" alt="Increase icon" loading="lazy">add</span>
               </button>
               <p class="quantity-text">1</p>
-              <button class="decrease-button" type="button">
+              <button class="item-button" type="button">
                 <span class="material-symbols-outlined" role="img" aria-label="Decrease icon" alt="Decrease icon" loading="lazy">remove</span>
               </button>
-              <button class="remove-button" type="button">
-                <span class="material-symbols-outlined" role="img" aria-label="Remove icon" alt="Remove icon" loading="lazy">delete_forever</span>
+              <button class="item-button" type="button">
+                <span class="material-symbols-outlined" role="img" aria-label="Remove icon" alt="Remove icon" loading="lazy">delete</span>
               </button>
             </div>
           </div>
-        </section>
 
-        <section class="order-summary-section" aria-labelledby="order-summary-heading">
-          <h2 id="order-summary-heading">Order Summary</h2>
-          <div class="order-cost-recap">
-            <p><span class="order-cost-text">SubTotal</span> 150 000₩</p>
-            <p><span class="order-cost-text">Shipping</span> 25 000₩</p>
-            <p class="bold">Total 150 000₩</p>
+          <div class="cart-item">
+            <img id="cart-item-image" src="https://images.pexels.com/photos/6694337/pexels-photo-6694337.jpeg" alt="" loading="lazy">
+
+            <div class="item-content">
+              <p class="item-name">Clasic White T-shirt</p>
+              <p class="item-price">25 000₩</p>
+            </div>
+
+            <div class="item-related-buttons">
+              <button class="item-button" type="button">
+                <span class="material-symbols-outlined" role="img" aria-label="Increase icon" alt="Increase icon" loading="lazy">add</span>
+              </button>
+              <p class="quantity-text">1</p>
+              <button class="item-button" type="button">
+                <span class="material-symbols-outlined" role="img" aria-label="Decrease icon" alt="Decrease icon" loading="lazy">remove</span>
+              </button>
+              <button class="item-button" type="button">
+                <span class="material-symbols-outlined" role="img" aria-label="Remove icon" alt="Remove icon" loading="lazy">delete</span>
+              </button>
+            </div>
           </div>
-          <button class="checkout-button" type="button">Proceed to Checkout</button>
-        </section>
+
+          <div class="cart-item">
+            <img id="cart-item-image" src="https://images.pexels.com/photos/6694337/pexels-photo-6694337.jpeg" alt="" loading="lazy">
+
+            <div class="item-content">
+              <p class="item-name">Clasic White T-shirt</p>
+              <p class="item-price">25 000₩</p>
+            </div>
+
+            <div class="item-related-buttons">
+              <button class="item-button" type="button">
+                <span class="material-symbols-outlined" role="img" aria-label="Increase icon" alt="Increase icon" loading="lazy">add</span>
+              </button>
+              <p class="quantity-text">1</p>
+              <button class="item-button" type="button">
+                <span class="material-symbols-outlined" role="img" aria-label="Decrease icon" alt="Decrease icon" loading="lazy">remove</span>
+              </button>
+              <button class="item-button" type="button">
+                <span class="material-symbols-outlined" role="img" aria-label="Remove icon" alt="Remove icon" loading="lazy">delete</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="order-summary-section" aria-labelledby="order-summary-heading">
+        <h2 id="order-summary-heading">Order Summary</h2>
+        <div class="order-cost-recap">
+          <span class="span-values-container">
+            <p>SubTotal</p>
+            <p class="subTotal-value">150 000₩</p>
+          </span>
+          <span class="span-values-container">
+            <p>Shipping</p>
+            <p class="shipping-value">25 000₩</p>
+          </span>
+          <span class="span-values-container bold">
+            <p>Total</p>
+            <p class="total-value">150 000₩</p>
+          </span>
+        </div>
+        <button class="checkout-button" type="button">Proceed to Checkout</button>
       </section>
     </main>
   </body>
