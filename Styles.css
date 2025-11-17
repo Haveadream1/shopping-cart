@@ -26,7 +26,7 @@ html {
 }
 
 /* target #root after */
-body {
+#root {
   min-height: 100vh;
   padding: var(--space-md);
   background-color: var(--white);
@@ -178,6 +178,10 @@ img {
 }
 
 /* Shop Style */
+.body-shop-page {
+  display: grid;
+}
+
 .main-shop-page {
   display: grid;
   grid-template-rows: auto 1fr;
@@ -214,6 +218,31 @@ img {
   border-radius: var(--space-sm);
   color: white;
   background-color: var(--light-blue);
+}
+
+/* Tablet styling */
+@media (max-width: 850px) {
+  #root  {
+    background-color: red;
+  }
+  .shop-header {
+    text-align: center;
+  }
+  .shop-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+}
+
+/* Mobile styling */
+@media (max-width: 500px) {
+  #root  {
+    background-color: rgb(0, 66, 248);
+  }
+  .shop-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr); /* Keep always the same number of cells despite responsivity (2*6 = 12, 3*4=12,) */
+  }
 }
 
 /* Cart Style */
@@ -358,4 +387,3 @@ button {
     flex-direction: column;
   }
 }
-
