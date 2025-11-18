@@ -12,7 +12,6 @@
   --light-grey: #ECEFF4;
   --grey: #e1e1e1;
   --light-blue: #53a8ff;
-  --hover-light-blue: #a0cfff;
 
   /* Spacing */
   --space-xs: 0.5rem;
@@ -356,8 +355,8 @@ img {
 button {
   font-family: "Montserrat", sans-serif;
 }
-.clear-button:hover {
-  color: var(--hover-light-blue);
+button:hover {
+  opacity: 70%;
 }
 
 /* Mobile styling */

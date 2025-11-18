@@ -1,14 +1,17 @@
+import { Link } from "react-router";
+
 export default function Header({
+    className,
     isHomePageSelected
 }) {
     return (
-        <header>
+        <header className={className}>
             <nav aria-label="Main navigation">
-                <a href="/">Home</a>
-                <a href="">Shop</a>
-                <a href="" aria-label="Shopping cart">
+                <Link to="/">Home</Link>
+                <Link to="/shop">Shop</Link>
+                <Link to="/cart" aria-label="Shopping cart">
                     <span className="material-symbols-outlined" role="img" aria-label="Shopping cart" alt="Shopping cart" loading="lazy">shopping_cart</span>
-                </a> 
+                </Link>
             </nav>
 
             {isHomePageSelected && 
