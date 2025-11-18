@@ -27,13 +27,12 @@ html {
 
 /* target #root after */
 #root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+
   min-height: 100vh;
   padding: var(--space-md);
   background-color: var(--white);
-}
-.body-home-page {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
 }
 
 /* Header */
@@ -77,7 +76,6 @@ nav {
 .main-home-page {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
-
 }
 
 .best-sellers {
@@ -178,10 +176,6 @@ img {
 }
 
 /* Shop Style */
-.body-shop-page {
-  display: grid;
-}
-
 .main-shop-page {
   display: grid;
   grid-template-rows: auto 1fr;
@@ -240,11 +234,6 @@ img {
 }
 
 /* Cart Style */
-.body-cart-page {
-  display: grid;
-
-  grid-template-rows: auto 1fr;
-}
 .main-cart-page {
   display: grid;
   gap: var(--space-lg);
