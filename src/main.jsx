@@ -6,11 +6,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import Home from './containers/HomeContainer.jsx'
 import Shop from './containers/ShopContainer.jsx'
 import Cart from './containers/CartContainer.jsx'
+import ErrorPage from './containers/ErrorContainer.jsx'
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Home />
+        element: <Home />,
+        errorElement:<ErrorPage />
     },
     {
         path: "/shop",
