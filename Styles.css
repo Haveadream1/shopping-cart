@@ -369,3 +369,12 @@ button:hover {
     flex-direction: column;
   }
 }
+
+/* Error page */
+.error-heading {
+  text-align: center;
+}
+.error-text-redirect {
+  text-align: center;
+  padding: var(--space-lg);
+}
