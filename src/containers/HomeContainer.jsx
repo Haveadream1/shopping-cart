@@ -1,6 +1,79 @@
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
+import BestSellersItem from "../components/BestSellersItem";
 
 export default function Home() {
+    // const [dataFetched, setDataFetched] = useState({
+    //     image: null,
+    //     alt: null
+    // });
+
+    const [dataFetched, setDataFetched] = useState(null);
+    const [bestSellers, setBestSellersArr] = useState(null);
+
+    const [image, setImage] = useState(null);
+    const [x, setX] = useState(null);
+    const [y, setY] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("https://fakestoreapi.com/products");
+                if (response.status >= 400) {
+                    console.error("An error occurred while fetching data:", error);
+                    throw error;
+                }
+                
+                const data = await response.json();
+
+                const imageUrl = data[0].image;
+                const price = data[0].price;
+                const name = data[0].title;
+
+                console.log(data);
+
+                setDataFetched(data);
+
+                setImage(imageUrl);
+                setX(price);
+                setY(name);
+                console.log(data[0])
+
+                return data;
+            } catch (error) {
+                console.error("An error occurred while fetching data:", error);
+                throw error;
+            }
+        }
+        fetchData();
+    }, []);
+
+    const sortProductByRating = (arr) => {
+        arr.sort((a, b) => a.rating.rate - b.rating.rate); // sort the item array by rating
+        const topRatedItems = arr.slice(-5,-1) // select only the top 4 best sellers
+
+        setBestSellersArr(topRatedItems);
+    }
+
+    useEffect(() => {
+        // console.log("State updated:", dataFetched);
+
+        if (dataFetched && dataFetched.length) {
+            sortProductByRating(dataFetched);
+            // console.log(sortedArr);
+        }
+    }, [dataFetched]);
+
+    // TODO add setLoading  
+
+    // Fetch all data and store in a list the 4 items with the best rating,
+        // Display them in home page
+    // In home page, display 12 items randomly
+        // Name, price and image
+        // When a button is clicked store the array of info
+        // increase the count in cart
+    // In cart page, display the array of selectioned items, display info
+    
     return (
         <>
             <Header className={"header-home-page"} isHomePageSelected={true}/>
@@ -9,17 +82,19 @@ export default function Home() {
                     <h2 id="best-sellers-heading">Take a look at our best sellers</h2>
 
                     <div className="product-grid">
-                        <div className="product-card">
-                            <img id="product-image" src="https://images.pexels.com/photos/6694337/pexels-photo-6694337.jpeg" alt="Oslo chair" loading="lazy" />
-                            <p className="product-name">The Oslo chair</p>
-                            <p className="product-price">300 000₩</p>
-                        </div>
-
-                        <div className="product-card">
-                            <img id="product-image" src="https://images.pexels.com/photos/6694337/pexels-photo-6694337.jpeg" alt="Oslo chair" loading="lazy" />
-                            <p className="product-name">The Oslo chair</p>
-                            <p className="product-price">300 000₩</p>
-                        </div>
+                        {bestSellers ? (
+                            bestSellers.map((item, index) => 
+                                <BestSellersItem 
+                                    key={index}
+                                    imageSrc={item.image}
+                                    imageAlt={item.title}
+                                    productName={item.title}
+                                    productPrice={item.price}
+                                />
+                            )
+                        ) : (
+                            <p>Loading ...</p>
+                        )}
                     </div>
                 </section>
 
@@ -38,3 +113,19 @@ export default function Home() {
         </>
     );
 }
+
+                        {/* <div className="product-card">
+                            {image ? (
+                                <img id="product-image" src={image} alt="Oslo chair" loading="lazy" />
+                            ) : (
+                                <p>Loading ...</p>
+                            )}
+                            <p className="product-name">{y}</p>
+                            <p className="product-price">{x}</p>
+                        </div>
+
+                        <div className="product-card">
+                            <img id="product-image" src="https://images.pexels.com/photos/6694337/pexels-photo-6694337.jpeg" alt="Oslo chair" loading="lazy" />
+                            <p className="product-name">The Oslo chair</p>
+                            <p className="product-price">300 000₩</p>
+                        </div> */}
