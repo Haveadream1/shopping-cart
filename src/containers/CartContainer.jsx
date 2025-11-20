@@ -7,8 +7,8 @@ import { useData } from "./DataContext";
 export default function Cart() {
     const dataArr = useData();
     const {idArr, isItemIdInCart, clearIdArr} = useCart();
-
     const [selectionedArr, setSelectionedArr] = useState([]);
+    const [itemCount, setItemCount] = useState(0);
 
     const retrieveSelectionedItems = (arr) => {
         const selectionedItems = [];
@@ -19,6 +19,7 @@ export default function Cart() {
                 selectionedItems.push(arr[i]);
             }
         }
+        setItemCount(selectionedItems.length);
         setSelectionedArr(selectionedItems);
     }
 
@@ -30,6 +31,7 @@ export default function Cart() {
         if (idArr.length !== 0) {
             clearIdArr();
             setSelectionedArr([]);
+            setItemCount(0);
         }
     }
 
@@ -46,7 +48,7 @@ export default function Cart() {
 
                 <section className="cart-content-section" aria-labelledby="cart-content-heading">
                     <span className="span-content-header">
-                        <h2 id="order-content-heading">3 items</h2>
+                        <h2 id="order-content-heading">{itemCount} items</h2>
                         <button className="clear-button" type="button" onClick={handleButtonClick}>Clear all</button>
                     </span>
 
