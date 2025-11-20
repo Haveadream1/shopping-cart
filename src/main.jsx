@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
@@ -7,12 +7,13 @@ import Home from './containers/HomeContainer.jsx'
 import Shop from './containers/ShopContainer.jsx'
 import Cart from './containers/CartContainer.jsx'
 import ErrorPage from './containers/ErrorContainer.jsx'
+import { DataProvider } from './containers/DataContext.jsx'
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Home />,
-        errorElement:<ErrorPage />
+        errorElement: <ErrorPage />
     },
     {
         path: "/shop",
@@ -26,8 +27,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <DataProvider>
+      <RouterProvider router={router} />
+    </DataProvider>
   </StrictMode>,
 )
-
-    {/* <App /> */}
