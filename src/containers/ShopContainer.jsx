@@ -17,7 +17,6 @@ export default function Shop() {
         retrieveShopItems(dataArr);
     }, []);
 
-
     return (
         <>
             <Header className={"header-shop-page"} />
@@ -32,6 +31,7 @@ export default function Shop() {
                         itemsArr.map((item, index) =>
                             <ShopItem
                                 key={index}
+                                itemId={item.id}
                                 imageSrc={item.image}
                                 imageAlt={item.title}
                                 imageName={item.title}
