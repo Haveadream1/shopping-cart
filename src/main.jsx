@@ -9,6 +9,10 @@ import Cart from './containers/CartContainer.jsx'
 import ErrorPage from './containers/ErrorContainer.jsx'
 import { DataProvider } from './containers/DataContext.jsx'
 import CartProvider from './containers/CartContext.jsx'
+import './styles/HomePage.css'
+import './styles/ShopPage.css'
+import './styles/CartPage.css'
+import './styles/ErrorPage.css'
 
 const router = createBrowserRouter([
     {
