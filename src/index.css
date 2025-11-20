@@ -1,0 +1,42 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colors */
+  --white: #F6F7F8;
+  --light-grey: #ECEFF4;
+  --grey: #e1e1e1;
+  --light-blue: #53a8ff;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+}
+
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+
+  min-height: 100vh;
+  padding: var(--space-md);
+  gap: var(--space-sm);
+  background-color: var(--white);
+}
+
+button {
+  font-family: "Montserrat", sans-serif;
+}
+button:hover {
+  opacity: 70%;
+}
