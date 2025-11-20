@@ -6,7 +6,7 @@ import { useData } from "./DataContext";
 
 export default function Cart() {
     const dataArr = useData();
-    const {idArr, isItemIdInCart} = useCart();
+    const {idArr, isItemIdInCart, clearIdArr} = useCart();
 
     const [selectionedArr, setSelectionedArr] = useState([]);
 
@@ -26,6 +26,18 @@ export default function Cart() {
         retrieveSelectionedItems(dataArr);
     }, []);
 
+    const handleButtonClick = () => { // Reset state
+        if (idArr.length !== 0) {
+            clearIdArr();
+            setSelectionedArr([]);
+        }
+    }
+
+    useEffect(() => {
+        console.log(idArr, selectionedArr);
+    }, [idArr]);
+
+
     return (
         <>
             <Header className={"header-cart-page"} />
@@ -35,7 +47,7 @@ export default function Cart() {
                 <section className="cart-content-section" aria-labelledby="cart-content-heading">
                     <span className="span-content-header">
                         <h2 id="order-content-heading">3 items</h2>
-                        <button className="clear-button" type="button">Clear all</button>
+                        <button className="clear-button" type="button" onClick={handleButtonClick}>Clear all</button>
                     </span>
 
                     <div className="items-grid">
