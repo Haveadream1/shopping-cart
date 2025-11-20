@@ -15,10 +15,15 @@ export default function CartProvider({ children }) {
         return idArr.includes(itemId)
     }
 
+    const clearIdArr = () => {
+        setIdArr([]);
+    }
+
     const value = {
         idArr,
         addItemsIdToCart,
-        isItemIdInCart
+        isItemIdInCart,
+        clearIdArr
     }
 
     return (
