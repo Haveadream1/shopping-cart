@@ -1,0 +1,36 @@
+/* Header */
+.header-home-page {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-sm);
+}
+/* maybe remove icon and lets place a cart text */
+
+.hero {
+  width: -webkit-fill-available;
+  min-height: 200px;
+  position: relative;
+}
+#hero-image {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.hero-text-container {
+  padding: var(--space-md);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  text-align: center;
+  color: white;
+}

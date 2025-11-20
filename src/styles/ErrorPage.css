@@ -1,0 +1,7 @@
+.error-heading {
+  text-align: center;
+}
+.error-text-redirect {
+  text-align: center;
+  padding: var(--space-lg);
+}
