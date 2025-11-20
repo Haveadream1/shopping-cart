@@ -1,4 +1,4 @@
-import { StrictMode, useEffect } from 'react'
+import { StrictMode, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
@@ -8,6 +8,7 @@ import Shop from './containers/ShopContainer.jsx'
 import Cart from './containers/CartContainer.jsx'
 import ErrorPage from './containers/ErrorContainer.jsx'
 import { DataProvider } from './containers/DataContext.jsx'
+import CartProvider from './containers/CartContext.jsx'
 
 const router = createBrowserRouter([
     {
@@ -28,7 +29,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <DataProvider>
-      <RouterProvider router={router} />
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
     </DataProvider>
   </StrictMode>,
 )
