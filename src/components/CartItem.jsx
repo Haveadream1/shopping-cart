@@ -13,17 +13,12 @@ export default function CartItem({
 
     const handleIncreaseButton = () => {
         increaseItemQuantity(itemId)
-        // setItemQuantity(prev => prev + 1);
     }
     const handleDecreaseButton = () => {
         decreaseItemQuantity(itemId)
-        // if (itemQuantity > 1 ) {
-        //     setItemQuantity(prev => prev - 1);
-        // }
     }
     const handleDeleteButton = () => {
         removeIdFromCart(itemId);
-        // setItemQuantity(1); // TODO need to fix issue
     }
 
     useEffect(() => {
@@ -44,12 +39,7 @@ export default function CartItem({
                     <span className="material-symbols-outlined" role="img" aria-label="Increase icon" alt="Increase icon" loading="lazy">add</span>
                 </button>
                 <p className="quantity-text">
-                    {/* {itemQuantity[itemId] ? (
-                        `${itemQuantity[itemId]}`
-                    ) : (
-                        <p>loading...</p>
-                    )} */}
-                    {itemQuantity[itemId]}
+                    {itemQuantity[itemId] || 1}
                 </p>
                 <button className="item-button" type="button" onClick={handleDecreaseButton}>
                     <span className="material-symbols-outlined" role="img" aria-label="Decrease icon" alt="Decrease icon" loading="lazy">remove</span>
