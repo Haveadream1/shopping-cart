@@ -1,6 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import { perEnvironmentPlugin } from "vite";
-
 const CartContext = createContext();
 
 export default function CartProvider({ children }) {
