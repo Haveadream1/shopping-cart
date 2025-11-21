@@ -6,10 +6,9 @@ import { useData } from "./DataContext";
 
 export default function Cart() {
     const dataArr = useData();
-    const {idArr, isItemIdInCart, clearIdArr} = useCart();
+    const {idArr, isItemIdInCart, clearIdArr, resetAllItemsQuantity, subTotal, resetSubTotal} = useCart();
     const [selectionedArr, setSelectionedArr] = useState([]);
     const [itemCount, setItemCount] = useState(0);
-    const [subTotal, setSubTotal] = useState(0);
 
     const retrieveSelectionedItems = (arr) => {
         const selectionedItems = [];
@@ -26,20 +25,21 @@ export default function Cart() {
 
     useEffect(() => {
         retrieveSelectionedItems(dataArr);
-    }, [idArr]); //
+    }, [idArr]);
 
     const handleClearAllButton = () => { // Reset state
         if (idArr.length !== 0) {
             clearIdArr();
             setSelectionedArr([]);
             setItemCount(0);
+            resetAllItemsQuantity();
+            resetSubTotal();
         }
     }
 
     useEffect(() => {
         console.log(idArr, selectionedArr);
     }, [idArr]);
-
 
     return (
         <>
@@ -75,8 +75,8 @@ export default function Cart() {
                     <h2 id="order-summary-heading">Order Summary</h2>
                     <div className="order-cost-recap">
                         <span className="span-values-container">
-                            <p>SubTotal</p>
-                            <p className="subTotal-value">150 000₩</p>
+                            <p>Sub-Total</p>
+                            <p className="sub-total-value">{subTotal} ₩</p>
                         </span>
                         <span className="span-values-container">
                             <p>Shipping</p>
