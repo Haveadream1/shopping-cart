@@ -4,6 +4,7 @@ const CartContext = createContext();
 export default function CartProvider({ children }) {
     const [idArr, setIdArr] = useState([]);
     const [itemQuantity, setItemQuantity] = useState([]); // id, quantity
+    const [subTotal, setSubTotal] = useState([0]);
 
     const addItemsIdToCart = (itemId) => {
         setIdArr(prev => {
@@ -33,10 +34,25 @@ export default function CartProvider({ children }) {
         }));
     }
 
+    const resetAllItemsQuantity = () => {
+        setItemQuantity([]);
+    }
+
+    const resetItemQuantity = (itemId) => {
+        setItemQuantity(prev => ({
+            ...prev,
+            [itemId]: 0
+        }))
+    }
+
     const removeIdFromCart = (itemId) => {
         setIdArr(prev => 
             prev.filter(id => id !== itemId) // Keep all id that doesn't match the one we remove
         )
+    }
+
+    const resetSubTotal = () => {
+        setSubTotal(0);
     }
 
     const value = {
@@ -47,7 +63,12 @@ export default function CartProvider({ children }) {
         itemQuantity,
         increaseItemQuantity,
         decreaseItemQuantity,
-        removeIdFromCart
+        resetAllItemsQuantity,
+        resetItemQuantity,
+        removeIdFromCart,
+        subTotal,
+        setSubTotal,
+        resetSubTotal
     }
 
     return (
