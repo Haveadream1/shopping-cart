@@ -9,6 +9,7 @@ export default function Cart() {
     const {idArr, isItemIdInCart, clearIdArr} = useCart();
     const [selectionedArr, setSelectionedArr] = useState([]);
     const [itemCount, setItemCount] = useState(0);
+    const [subTotal, setSubTotal] = useState(0);
 
     const retrieveSelectionedItems = (arr) => {
         const selectionedItems = [];
@@ -20,14 +21,14 @@ export default function Cart() {
             }
         }
         setItemCount(selectionedItems.length);
-        setSelectionedArr(selectionedItems);
+        setSelectionedArr(selectionedItems);    
     }
 
     useEffect(() => {
         retrieveSelectionedItems(dataArr);
-    }, []);
+    }, [idArr]); //
 
-    const handleButtonClick = () => { // Reset state
+    const handleClearAllButton = () => { // Reset state
         if (idArr.length !== 0) {
             clearIdArr();
             setSelectionedArr([]);
@@ -49,7 +50,7 @@ export default function Cart() {
                 <section className="cart-content-section" aria-labelledby="cart-content-heading">
                     <span className="span-content-header">
                         <h2 id="order-content-heading">{itemCount} items</h2>
-                        <button className="clear-button" type="button" onClick={handleButtonClick}>Clear all</button>
+                        <button className="clear-button" type="button" onClick={handleClearAllButton}>Clear all</button>
                     </span>
 
                     <div className="items-grid">
@@ -57,9 +58,10 @@ export default function Cart() {
                             selectionedArr.map((item, index) => 
                                 <CartItem 
                                     key={index}
+                                    itemId={item.id}
                                     imageSrc={item.image}
                                     imageAlt={item.title}
-                                    imageName={item.title}
+                                    itemName={item.title}
                                     itemPrice={item.price}
                                 />
                             )
