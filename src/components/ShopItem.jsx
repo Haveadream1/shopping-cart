@@ -8,12 +8,15 @@ export default function ShopItem({
     itemName,
     itemPrice,
 }) {
-    const {addItemsIdToCart, idArr} = useCart();
-    const [isBtnClicked, setIsBtnClicked] = useState(false);
+    const {addItemsIdToCart, setSubTotal} = useCart();
+    const [isBtnClicked, setIsBtnClicked] = useState(false); // Put in a higher instance, so it doesnt change when we switch pages
 
     const handleButtonClick = () => {
-        addItemsIdToCart(itemId);
-        setIsBtnClicked(true);
+        if (!isBtnClicked) {
+            addItemsIdToCart(itemId);
+            setIsBtnClicked(true);
+            setSubTotal(prev => Math.round((prev + itemPrice)* 100) / 100);
+        }
     };
 
     return (
