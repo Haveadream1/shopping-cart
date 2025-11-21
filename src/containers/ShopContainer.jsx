@@ -5,7 +5,6 @@ import ShopItem from "../components/ShopItem";
 
 export default function Shop() {
     const dataArr = useData();
-
     const [itemsArr, setItemsArr] = useState();
 
     const retrieveShopItems = (arr) => {
