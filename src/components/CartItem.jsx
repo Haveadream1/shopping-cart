@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useCart } from "../containers/CartContext";
 
 export default function CartItem({
@@ -8,22 +8,27 @@ export default function CartItem({
     itemName,
     itemPrice,
 }) {
-    // const [itemQuantity, setItemQuantity] = useState(1);
-    const {removeIdFromCart, increaseItemQuantity, decreaseItemQuantity, itemQuantity} = useCart();
+    const {removeIdFromCart, increaseItemQuantity, decreaseItemQuantity, resetItemQuantity, itemQuantity, setSubTotal} = useCart();
 
     const handleIncreaseButton = () => {
         increaseItemQuantity(itemId)
+        setSubTotal(prev => Math.round((prev + itemPrice)* 100) / 100);
     }
     const handleDecreaseButton = () => {
-        decreaseItemQuantity(itemId)
+        if (itemQuantity[itemId] > 1) {
+            decreaseItemQuantity(itemId)
+            setSubTotal(prev => Math.round((prev - itemPrice)* 100) / 100);
+        }
     }
     const handleDeleteButton = () => {
         removeIdFromCart(itemId);
+        resetItemQuantity(itemId);
+        setSubTotal(prev => Math.round((prev - (itemPrice * itemQuantity[itemId] || 1))* 100) / 100);
     }
 
-    useEffect(() => {
-        console.log(itemQuantity[itemId]);
-    }, [itemQuantity]);
+    // useEffect(() => {
+    //     console.log(itemQuantity[itemId], "test");
+    // }, [itemQuantity[itemId]]);
 
     return (
         <div className="cart-item">
@@ -31,7 +36,14 @@ export default function CartItem({
 
             <div className="item-content">
                 <p className="item-name">{itemName}</p>
-                <p className="item-price">{itemPrice} ₩</p>
+                <p className="item-price">
+                    {!itemQuantity[itemId] ? (
+                        `${itemPrice} ₩`
+                        
+                    ) : (
+                        `${itemPrice * itemQuantity[itemId]} ₩`
+                    )}
+                </p>
             </div>
 
             <div className="item-related-buttons">
