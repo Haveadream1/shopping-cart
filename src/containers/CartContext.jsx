@@ -32,7 +32,6 @@ export default function CartProvider({ children }) {
             [itemId]: (prev[itemId] || 1) - 1
         }));
     }
-    console.log("test")
 
     const removeIdFromCart = (itemId) => {
         setIdArr(prev => 
