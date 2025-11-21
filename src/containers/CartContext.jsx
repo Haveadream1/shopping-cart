@@ -1,9 +1,11 @@
 import { createContext, useContext, useState } from "react";
+import { perEnvironmentPlugin } from "vite";
 
 const CartContext = createContext();
 
 export default function CartProvider({ children }) {
     const [idArr, setIdArr] = useState([]);
+    const [itemQuantity, setItemQuantity] = useState([]); // id, quantity
 
     const addItemsIdToCart = (itemId) => {
         setIdArr(prev => {
@@ -19,11 +21,36 @@ export default function CartProvider({ children }) {
         setIdArr([]);
     }
 
+    const increaseItemQuantity = (itemId) => {
+        setItemQuantity(prev => ({
+            ...prev,
+            [itemId]: (prev[itemId] || 1) + 1
+        }));
+    }
+
+    const decreaseItemQuantity = (itemId) => {
+        setItemQuantity(prev => ({
+            ...prev,
+            [itemId]: (prev[itemId] || 1) - 1
+        }));
+    }
+    console.log("test")
+
+    const removeIdFromCart = (itemId) => {
+        setIdArr(prev => 
+            prev.filter(id => id !== itemId) // Keep all id that doesn't match the one we remove
+        )
+    }
+
     const value = {
         idArr,
         addItemsIdToCart,
         isItemIdInCart,
-        clearIdArr
+        clearIdArr,
+        itemQuantity,
+        increaseItemQuantity,
+        decreaseItemQuantity,
+        removeIdFromCart
     }
 
     return (
