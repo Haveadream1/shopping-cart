@@ -9,6 +9,7 @@ export default function Cart() {
     const {idArr, isItemIdInCart, clearIdArr, resetAllItemsQuantity, subTotal, resetSubTotal} = useCart();
     const [selectionedArr, setSelectionedArr] = useState([]);
     const [itemCount, setItemCount] = useState(0);
+    const [total, setTotal] = useState(0);
 
     const retrieveSelectionedItems = (arr) => {
         const selectionedItems = [];
@@ -23,11 +24,7 @@ export default function Cart() {
         setSelectionedArr(selectionedItems);    
     }
 
-    useEffect(() => {
-        retrieveSelectionedItems(dataArr);
-    }, [idArr]);
-
-    const handleClearAllButton = () => { // Reset state
+    const handleClearAllBtn = () => { // Reset state
         if (idArr.length !== 0) {
             clearIdArr();
             setSelectionedArr([]);
@@ -37,9 +34,23 @@ export default function Cart() {
         }
     }
 
+    const handleCheckoutBtn = () => {
+        if (subTotal > 0) { // To run when we push items as fee are always included
+            alert(`Thank you for your purchase of ${total} ₩ !`);
+        }
+    }
+
     useEffect(() => {
+        retrieveSelectionedItems(dataArr);
+
         console.log(idArr, selectionedArr);
     }, [idArr]);
+
+    useEffect(() => {
+        const shippingValue = 25;
+        console.log(shippingValue, subTotal, subTotal+ shippingValue)
+        setTotal(Number(subTotal + shippingValue).toFixed(2));
+    }, [subTotal]);
 
     return (
         <>
@@ -50,7 +61,7 @@ export default function Cart() {
                 <section className="cart-content-section" aria-labelledby="cart-content-heading">
                     <span className="span-content-header">
                         <h2 id="order-content-heading">{itemCount} items</h2>
-                        <button className="clear-button" type="button" onClick={handleClearAllButton}>Clear all</button>
+                        <button className="clear-button" type="button" onClick={handleClearAllBtn}>Clear all</button>
                     </span>
 
                     <div className="items-grid">
@@ -80,39 +91,28 @@ export default function Cart() {
                         </span>
                         <span className="span-values-container">
                             <p>Shipping</p>
-                            <p className="shipping-value">25 000₩</p>
+                            <p className="shipping-value">
+                                {subTotal === 0 ? (
+                                    `0 ₩`
+                                ) : (
+                                    `25 ₩`
+                                )}
+                            </p>
                         </span>
                         <span className="span-values-container bold">
                             <p>Total</p>
-                            <p className="total-value">150 000₩</p>
+                            <p className="total-value">
+                                {subTotal === 0 ? (
+                                    `0 ₩`
+                                ) : (
+                                    `${total} ₩`
+                                )}
+                            </p>
                         </span>
                     </div>
-                    <button className="checkout-button" type="button">Proceed to Checkout</button>
+                    <button className="checkout-button" type="button" onClick={handleCheckoutBtn}>Proceed to Checkout</button>
                 </section>
             </main>
         </>
     );
 }
-
-
-{/* <div className="cart-item">
-                            <img id="cart-item-image" src="https://images.pexels.com/photos/6694337/pexels-photo-6694337.jpeg" alt="" loading="lazy" />
-
-                            <div className="item-content">
-                                <p className="item-name">Clasic White T-shirt</p>
-                                <p className="item-price">25 000₩</p>
-                            </div>
-
-                            <div className="item-related-buttons">
-                                <button className="item-button" type="button">
-                                    <span className="material-symbols-outlined" role="img" aria-label="Increase icon" alt="Increase icon" loading="lazy">add</span>
-                                </button>
-                                <p className="quantity-text">1</p>
-                                <button className="item-button" type="button">
-                                    <span className="material-symbols-outlined" role="img" aria-label="Decrease icon" alt="Decrease icon" loading="lazy">remove</span>
-                                </button>
-                                <button className="item-button" type="button">
-                                    <span className="material-symbols-outlined" role="img" aria-label="Remove icon" alt="Remove icon" loading="lazy">delete</span>
-                                </button>
-                            </div>
-                        </div> */}
