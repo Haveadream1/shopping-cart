@@ -18,16 +18,6 @@ export default function Home() {
     useEffect(() => {
         sortProductByRating(dataArr);
     }, [dataArr]);
-
-    // TODO add setLoading  
-
-    // Fetch all data and store in a list the 4 items with the best rating,
-        // Display them in home page
-    // In home page, display 12 items randomly
-        // Name, price and image
-        // When a button is clicked store the array of info
-        // increase the count in cart
-    // In cart page, display the array of selectioned items, display info
     
     return (
         <>
@@ -69,9 +59,10 @@ export default function Home() {
     );
 }
 
-                        {/* 
-                        <div className="product-card">
-                            <img id="product-image" src="https://images.pexels.com/photos/6694337/pexels-photo-6694337.jpeg" alt="Oslo chair" loading="lazy" />
-                            <p className="product-name">The Oslo chair</p>
-                            <p className="product-price">300 000₩</p>
-                        </div> */}
+    // Fetch all data and store in a list the 4 items with the best rating,
+        // Display them in home page
+    // In home page, display 12 items randomly
+        // Name, price and image
+        // When a button is clicked store the array of info
+        // increase the count in cart
+    // In cart page, display the array of selectioned items, display info
