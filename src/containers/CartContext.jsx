@@ -4,7 +4,7 @@ const CartContext = createContext();
 export default function CartProvider({ children }) {
     const [idArr, setIdArr] = useState([]);
     const [itemQuantity, setItemQuantity] = useState([]); // id, quantity
-    const [subTotal, setSubTotal] = useState([0]);
+    const [subTotal, setSubTotal] = useState(0);
 
     const addItemsIdToCart = (itemId) => {
         setIdArr(prev => {
