@@ -2,6 +2,7 @@
 .main-home-page {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
+  gap: var(--space-md);
 }
 
 .best-sellers {
