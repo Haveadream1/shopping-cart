@@ -8,7 +8,14 @@ export default function CartItem({
     itemName,
     itemPrice,
 }) {
-    const {removeIdFromCart, increaseItemQuantity, decreaseItemQuantity, resetItemQuantity, itemQuantity, setSubTotal} = useCart();
+    const {
+        removeIdFromCart, 
+        increaseItemQuantity, 
+        decreaseItemQuantity, 
+        resetItemQuantity, 
+        itemQuantity, 
+        setSubTotal, 
+    } = useCart();
 
     const handleIncreaseButton = () => {
         increaseItemQuantity(itemId)
@@ -23,12 +30,21 @@ export default function CartItem({
     const handleDeleteButton = () => {
         removeIdFromCart(itemId);
         resetItemQuantity(itemId);
-        setSubTotal(prev => Math.round((prev - (itemPrice * itemQuantity[itemId] || 1))* 100) / 100);
+        
+        if (!itemQuantity[itemId]) {
+            setSubTotal(prev => Math.round((prev - itemPrice)* 100) / 100);
+        } else {
+            setSubTotal(prev => Math.round((prev - (itemPrice * itemQuantity[itemId] || 1))* 100) / 100);
+        }
     }
 
     // useEffect(() => {
     //     console.log(itemQuantity[itemId], "test");
     // }, [itemQuantity[itemId]]);
+
+    // useEffect(() => {
+    //     console.log(subTotal);
+    // }, [subTotal])  
 
     return (
         <div className="cart-item">
