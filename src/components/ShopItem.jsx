@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useCart } from "../containers/CartContext";
 
 export default function ShopItem({ 
@@ -8,14 +8,16 @@ export default function ShopItem({
     itemName,
     itemPrice,
 }) {
-    const {addItemsIdToCart, setSubTotal} = useCart();
-    const [isBtnClicked, setIsBtnClicked] = useState(false); // Put in a higher instance, so it doesnt change when we switch pages
+    const {addItemsIdToCart, setSubTotal, isItemIdInCart, idArr} = useCart();
+    const [isBtnClicked, setIsBtnClicked] = useState(false);
 
     const handleButtonClick = () => {
-        if (!isBtnClicked) {
-            addItemsIdToCart(itemId);
-            setIsBtnClicked(true);
-            setSubTotal(prev => Math.round((prev + itemPrice)* 100) / 100);
+        if (!isBtnClicked ) {
+            if (!isItemIdInCart(itemId)) {
+                addItemsIdToCart(itemId);
+                setIsBtnClicked(true);
+                setSubTotal(prev => Math.round((prev + itemPrice)* 100) / 100);
+            }
         }
     };
 
